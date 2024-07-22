@@ -52,7 +52,7 @@ import java.util.List;
  */
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution20 {
     private static final List<Character> LEFT_CHAR = new ArrayList<>(Arrays.asList('(', '[', '{'));
     private static final List<Character> RIGHT_CHAR = new ArrayList<>(Arrays.asList(')', ']', '}'));
 
