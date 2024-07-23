@@ -37,44 +37,68 @@ package com.mrru.hot100.leetcode.editor.cn; /**
 
 /**
  * Definition for singly-linked list.
- public class ListNode {
- int val;
- ListNode next;
- ListNode() {}
- ListNode(int val) { this.val = val; }
- ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- }
+ * public class ListNode {
+ * int val;
+ * ListNode next;
+ * ListNode() {}
+ * ListNode(int val) { this.val = val; }
+ * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
  */
-class Solution {
+class Solution234 {
     public boolean isPalindrome(ListNode head) {
-
         //找到链表的中点，反转后半部分
-
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        //偶数
+        if (fast != null) {
+            slow = slow.next;
+        }
+        ListNode lastHalf = reverse(slow);
+        while (lastHalf != null) {
+            if (lastHalf.val != head.val) {
+                return false;
+            } else {
+                lastHalf = lastHalf.next;
+                head = head.next;
+            }
+        }
         return true;
     }
 
 
-    private void reverse(ListNode head){
-
-
+    private ListNode reverse(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        return pre;
     }
 
     /**
      * 数组 前后依次比较方法
-    public boolean isPalindrome(ListNode head) {
-        ArrayList<Integer> list = new ArrayList<>();
-        while (head != null) {
-            list.add(head.val);
-            head = head.next;
-        }
-        for (int i = 0; i < list.size() / 2; i++) {
-            if (!list.get(i).equals(list.get(list.size() - 1 - i))) {
-                return false;
-            }
+     public boolean isPalindrome(ListNode head) {
+     ArrayList<Integer> list = new ArrayList<>();
+     while (head != null) {
+     list.add(head.val);
+     head = head.next;
+     }
+     for (int i = 0; i < list.size() / 2; i++) {
+     if (!list.get(i).equals(list.get(list.size() - 1 - i))) {
+     return false;
+     }
 
-        }
-        return true;
-    }
+     }
+     return true;
+     }
      */
 }
 //leetcode submit region end(Prohibit modification and deletion)
